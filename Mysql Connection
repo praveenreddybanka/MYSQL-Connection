@@ -1,0 +1,30 @@
+package com.hibernate.application.HibernateCRUD;
+
+import java.sql.*;
+
+/**
+ * Hello world!
+ *
+ */
+public class App {
+	public static void main(String[] args) throws SQLException {
+		String url ="jdbc:mysql://localhost:3306/test?useSSL=false";
+		String uname = "root";
+		String password = "1234";
+		try {
+
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db", "root", "1234");
+			System.out.println("connection established");
+			Statement st = con.createStatement();
+			ResultSet rs=st.executeQuery("select * from employee");  
+			while(rs.next())  
+			System.out.println(rs.getInt(1));  
+			con.close();  
+		} catch (Exception e) {
+			e.printStackTrace();
+			//e.getStackTrace();
+			System.out.println("error no connection established");
+		}
+	}
+}
